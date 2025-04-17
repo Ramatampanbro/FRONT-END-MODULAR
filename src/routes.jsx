@@ -8,6 +8,8 @@ import {
 } from "@heroicons/react/24/solid";
 import { Home, Profile, Tables, Notifications } from "@/pages/dashboard";
 import { SignIn, SignUp } from "@/pages/auth";
+import FatigueDetection from "./pages/dashboard/fatigue-detection";
+import PhoneDetection from "./pages/dashboard/phonedetection";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -21,13 +23,13 @@ export const routes = [
         // icon: <HomeIcon {...icon} />,
         name: "Fatigue-Detection",
         path: "/Fatigue-Detection",
-        element: <Home />,
+        element: <FatigueDetection />,
       },
       {
         // icon: <UserCircleIcon {...icon} />,
         name: "Smoke-Detection ",
         path: "/Smoke-Detection",
-        element: <Profile />,
+        element: <PhoneDetection />,
       },
       {
         // icon: <TableCellsIcon {...icon} />,
