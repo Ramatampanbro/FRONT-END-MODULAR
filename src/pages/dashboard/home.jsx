@@ -13,7 +13,7 @@ export function Home() {
 
   // Socket.IO setup untuk menerima data deteksi secara real-time
   useEffect(() => {
-    const socket = io("http://192.168.48.205:3000/api/detection", {
+    const socket = io("http://10.60.40.28:3000/api/detection", {
       query: { apiKey }  // Kirimkan API key jika diperlukan dalam query
     });
 
@@ -38,7 +38,7 @@ export function Home() {
   useEffect(() => {
     const fetchData = () => {
       axios
-        .get("http://192.168.48.205:3000/api/detection", {
+        .get("http://10.60.40.28:3000/api/detection", {
           headers: {
             "x-api-key": apiKey  // Sertakan API key dalam header
           }
@@ -65,7 +65,7 @@ export function Home() {
     const message = `🚨 Alert: Driver ${driver.driver_id} terdeteksi DROWSY pada ${new Date(driver.start_time).toLocaleString()}. Mohon segera waspadai!`;
 
     try {
-      await axios.post("http://192.168.48.205:3000/sendAlert", { message });
+      await axios.post("http://10.60.40.28:3000/sendAlert", { message });
       console.log("Alert terkirim ke Telegram");
     } catch (error) {
       console.error("Gagal mengirim alert ke Telegram:", error);

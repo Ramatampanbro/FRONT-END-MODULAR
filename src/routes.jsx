@@ -10,6 +10,7 @@ import { Home, Profile, Tables, Notifications } from "@/pages/dashboard";
 import { SignIn, SignUp } from "@/pages/auth";
 import FatigueDetection from "./pages/dashboard/fatigue-detection";
 import PhoneDetection from "./pages/dashboard/phonedetection";
+import SmokeDetection from "./pages/dashboard/smoke-detection";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -29,13 +30,14 @@ export const routes = [
         // icon: <UserCircleIcon {...icon} />,
         name: "Smoke-Detection ",
         path: "/Smoke-Detection",
-        element: <PhoneDetection />,
+        // element: <PhoneDetection />,
+        element: <SmokeDetection />,
       },
       {
         // icon: <TableCellsIcon {...icon} />,
         name: "Phone-Detection",
         path: "/Phone-Detection",
-        element: <Tables />,
+        element: <PhoneDetection />,
       },
       // {
       //  // icon: <InformationCircleIcon {...icon} />,

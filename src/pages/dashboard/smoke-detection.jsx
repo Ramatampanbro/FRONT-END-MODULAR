@@ -13,7 +13,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-export function Tables() {
+export function SmokeDetection() {
   const [driverData, setDriverData] = useState([]);
   const [filterEvent, setFilterEvent] = useState(""); // State for filtering by event
   const [filterDriverId, setFilterDriverId] = useState(""); // State for filtering by Driver ID
@@ -21,16 +21,16 @@ export function Tables() {
   const API_KEY = API_CONFIG.API_KEY;
 
   useEffect(() => {
-    const socket = io("http://10.60.40.28:3000/api/mobile-detection");
+    const socket = io("http://10.60.40.28:3000/api/smoke-detection");
     socket.on("new_mobile_detection", async (newEntry) => {
       if (newEntry.event) {
         try {
-          const response = await axios.get("http://10.60.40.28:3000/api/mobile-detection", {
+          const response = await axios.get("http://10.60.40.28:3000/api/smoke-detection", {
             headers: {
               "x-api-key": API_KEY,
             },
           });
-          setDriverData((prevData) => [newEntry, ...response.data]);
+          setDriverData((prevData) => [newEntry, ...response.data.data]);
         } catch (error) {
           console.error("Error fetching mobile detection data:", error);
         }
@@ -44,13 +44,15 @@ export function Tables() {
   useEffect(() => {
     const fetchData = () => {
       const xhr = new XMLHttpRequest();
-      xhr.open("GET", "http://10.60.40.28:3000/api/mobile-detection", true);
+      xhr.open("GET", "http://10.60.40.28:3000/api/smoke-detection", true);
       xhr.setRequestHeader("x-api-key", API_KEY);
 
       xhr.onload = () => {
         if (xhr.status >= 200 && xhr.status < 300) {
+          // const response = JSON.parse(xhr.responseText);
+          // const filteredData = response.data.filter((entry) => entry.event);
           const response = JSON.parse(xhr.responseText);
-          const filteredData = response.payload.filter((entry) => entry.event);
+          const filteredData = response.data.filter((entry) => entry.event);
           setDriverData(filteredData);
         } else {
           console.error("Error fetching data:", xhr.statusText);
@@ -97,7 +99,7 @@ export function Tables() {
             <option value="body_posture">Body Posture</option>
           </select>
         </div>
-        <div>
+        {/* <div>
           <label className="block text-sm font-bold mb-2">Filter by Driver ID:</label>
           <input
             type="text"
@@ -106,11 +108,11 @@ export function Tables() {
             value={filterDriverId}
             onChange={(e) => setFilterDriverId(e.target.value)}
           />
-        </div>
+        </div> */}
       </div>
 
       <div className="mb-8">
-        <h3 className="text-xl font-bold">Mobile Detection Chart</h3>
+        {/* <h3 className="text-xl font-bold">Mobile Detection Chart</h3> */}
         <ResponsiveContainer width="100%" height={400}>
           <LineChart
             data={filteredDriverData}
@@ -162,4 +164,4 @@ export function Tables() {
   );
 }
 
-export default Tables;
+export default SmokeDetection;
