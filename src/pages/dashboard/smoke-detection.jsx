@@ -84,7 +84,7 @@ export function SmokeDetection() {
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg mt-6 overflow-x-auto">
       {/* Filter Form */}
-      <div className="mb-6 flex items-center gap-4">
+      {/* <div className="mb-6 flex items-center gap-4">
         <div>
           <label className="block text-sm font-bold mb-2">Filter by Event:</label>
           <select
@@ -99,7 +99,7 @@ export function SmokeDetection() {
             <option value="body_posture">Body Posture</option>
           </select>
         </div>
-        {/* <div>
+        <div>
           <label className="block text-sm font-bold mb-2">Filter by Driver ID:</label>
           <input
             type="text"
@@ -108,11 +108,11 @@ export function SmokeDetection() {
             value={filterDriverId}
             onChange={(e) => setFilterDriverId(e.target.value)}
           />
-        </div> */}
-      </div>
+        </div>
+      </div> */}
 
       <div className="mb-8">
-        {/* <h3 className="text-xl font-bold">Mobile Detection Chart</h3> */}
+        <h3 className="text-xl font-bold">Smoke Detection Chart</h3>
         <ResponsiveContainer width="100%" height={400}>
           <LineChart
             data={filteredDriverData}

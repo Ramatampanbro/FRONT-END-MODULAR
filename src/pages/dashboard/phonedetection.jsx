@@ -50,7 +50,7 @@ export function PhoneDetection() {
       xhr.onload = () => {
         if (xhr.status >= 200 && xhr.status < 300) {
           const response = JSON.parse(xhr.responseText);
-          const filteredData = response.payload.filter((entry) => entry.event);
+          const filteredData = response.data.filter((entry) => entry.event);
           setDriverData(filteredData);
         } else {
           console.error("Error fetching data:", xhr.statusText);
@@ -82,7 +82,7 @@ export function PhoneDetection() {
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg mt-6 overflow-x-auto">
       {/* Filter Form */}
-      <div className="mb-6 flex items-center gap-4">
+      {/* <div className="mb-6 flex items-center gap-4">
         <div>
           <label className="block text-sm font-bold mb-2">Filter by Event:</label>
           <select
@@ -107,7 +107,7 @@ export function PhoneDetection() {
             onChange={(e) => setFilterDriverId(e.target.value)}
           />
         </div>
-      </div>
+      </div> */}
 
       <div className="mb-8">
         <h3 className="text-xl font-bold">Mobile Detection Chart</h3>
