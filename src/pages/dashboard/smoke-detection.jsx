@@ -21,11 +21,11 @@ export function SmokeDetection() {
   const API_KEY = API_CONFIG.API_KEY;
 
   useEffect(() => {
-    const socket = io("http://10.60.40.28:3000/api/smoke-detection");
+    const socket = io("http://192.168.2.205:3000/api/smoke-detection");
     socket.on("new_mobile_detection", async (newEntry) => {
       if (newEntry.event) {
         try {
-          const response = await axios.get("http://10.60.40.28:3000/api/smoke-detection", {
+          const response = await axios.get("http://192.168.2.205:3000/api/smoke-detection", {
             headers: {
               "x-api-key": API_KEY,
             },
@@ -44,7 +44,7 @@ export function SmokeDetection() {
   useEffect(() => {
     const fetchData = () => {
       const xhr = new XMLHttpRequest();
-      xhr.open("GET", "http://10.60.40.28:3000/api/smoke-detection", true);
+      xhr.open("GET", "http://192.168.2.205:3000/api/smoke-detection", true);
       xhr.setRequestHeader("x-api-key", API_KEY);
 
       xhr.onload = () => {
